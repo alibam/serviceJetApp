@@ -1,0 +1,12 @@
+/.cordova
+/merges
+/plugins
+/platforms/android/.settings
+/platforms/android/.staging
+/platforms/android/gen
+/platforms/android/.classpath
+/platforms/android/.project
+/platforms/android/bin/classes
+
+
+
