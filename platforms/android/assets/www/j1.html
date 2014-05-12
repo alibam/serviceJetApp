@@ -1,401 +1,1036 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<meta charset="utf-8">
-<title></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/badge.css" rel="stylesheet">
-<link href="css/bootstrap-glyphicons.css" rel="stylesheet">
-<style type="text/css">
-.list-link {
-	text-decoration: none !important;
-	display: block;
-	color: #333;
-}
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>巡检监控</title>
+    <!--Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/jet.css" rel="stylesheet">
 
-.link-badge {
-	float: right;
-	margin-right: 5px;
-}
-
-.head-title {
-	text-align: center;
-	position: absolute;
-	top: -15%;
-	left: 20%;
-	right: 20%;
-	color: #fff;
-}
-
-.brand-basic {
-	color: #999;
-	padding: 15px 15px;
-	font-size: 18px;
-	line-height: 20px;
-	text-decoration: none !important;
-}
-
-.brand-left {
-	float: left;
-}
-
-.brand-right {
-	float: right;
-}
-
-@media ( min-width : 768px) {
-	#main {
-		margin-top: 60px;
-	}
-}
-
-@media ( max-width : 767px) {
-	#main {
-		margin-top: 10px;
-	}
-}
-</style>
-
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .content-container {
+            border-radius: 4px;
+            margin-bottom: 20px;
+            min-height: 136px;
+        }
+        .ul-menu {
+            margin: 0 10%;
+        }
+        .ul-menu li {
+            float: left;
+            list-style: none;
+            padding: 4px;
+        }
+        .ul-menu a {
+            color: #999;
+            font-size: 18px;
+        }
+        .ul-menu a:hover {
+            color: #ddd;
+        }
+        
+		.chart {
+		    margin: 14px 15% 0 15%;
+			height: 500px;
+			width: 70%;
+		}
+		.pie-pgs {
+		    
+		    float:right;
+		    margin-top: 6px;
+		    margin-right: 20px;
+		    font-size: 18px;
+		}
+		.pie-chrome {
+		    width:40%;
+		}
+		.pie-firefox {
+		    width:43%;
+		}
+		.pie-safari {
+		    width:46%;
+		}
+		.pie-ie {
+		    width:49%;
+		}
+		.pie-other {
+		    width:48%;
+		}
+		.pie-span {
+		    font-size: 24px;
+		}
+    </style>
 </head>
-
 <body>
-	<!--head-->
-	<header class="navbar navbar-inverse navbar-fixed-top hidden-xs">
-		<div class="container">
-			<div class="head-title">
-				<h3>ServiceJet巡检系统</h3>
+    <header class="header navbar navbar-fixed-top">
+        <div class="container">
+            <!-- BEGIN LOGO -->
+            <a class="navbar-brand" href="#">
+                <img src="img/metrologo.png" alt="logo" class="img-responsive"/>
+            </a>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img alt="" src="img/avatar.jpg" style="margin-top:-2px;"/>
+                        <span class="username">
+                             系统管理员
+                        </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> My Calendar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+
+    <div id="appdashboard" class="container" style="margin-top:44px;">
+        <div class="row">
+            <div class="col-md-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">系统信息</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" style="border:none;">
+                                <strong>OS</strong>:<span class="span-content">Linux</span>
+                            </li>
+                            <li class="list-group-item" style="border:none;">
+                                <strong>Ver</strong>:<span class="span-content">Redhat</span>
+                            </li>
+                            <li class="list-group-item" style="border:none;">
+                                <strong>内核版本</strong>:<span class="span-content">2.4.21</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">等待处理队列</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="progress progress-striped active" style="margin:6px 0;">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" 
+                            aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <span class="sr-only">40% Complete (success)</span>
+                            </div>
+                            <span style="margin-left:15px;">12</span>
+                        </div>
+                        <div class="border-line"></div>
+                        
+                        <div class="graph-area vertical-margin">
+                            <div class="area-label">进程数</div>
+                            <span class="ellipse-area">32</span>
+                        </div>
+                        <div class="graph-area vertical-margin">
+                            <div class="area-label">僵死进程数</div>
+                            <span class="ellipse-area" style="background-color: #f0ad4e">4</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">CPU</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#cpu1" data-toggle="tab">
+                                <span class="epie-chart" data-percent="35">
+                                      <span class="percent"></span>
+                                </span></a>
+                            </li>
+                            <li><a href="#cpu2" data-toggle="tab">
+                                <span class="epie-chart" data-percent="66">
+                                      <span class="percent"></span>
+                                </span></a>
+                            </li>
+                            <li><a href="#cpu3" data-toggle="tab">
+                                <span class="epie-chart" data-percent="78">
+                                      <span class="percent"></span>
+                                </span></a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="cpu1">
+                                <div class="area-label">CPU使用记录</div>
+                                <div>
+                                    <ul class="list-group" style="float:left;">
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU型号</strong>:<span class="span-content">Intel i7</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU频率</strong>:<span class="span-content">12800</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>运行时间</strong>:<span class="span-content">35h</span>
+                                        </li>
+                                    </ul>
+                                    <div id="reatltime-chart1">
+                                        <div id="reatltime-chartContainer1" class="realtime-chartcontainer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="cpu2">
+                                <div class="area-label">CPU使用记录</div>
+                                <div>
+                                    <ul class="list-group" style="float:left;">
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU型号</strong>:<span class="span-content">Intel i7</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU频率</strong>:<span class="span-content">12800</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>运行时间</strong>:<span class="span-content">66h</span>
+                                        </li>
+                                    </ul>
+                                    <div id="reatltime-chart2">
+                                        <div id="reatltime-chartContainer2" class="realtime-chartcontainer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="cpu3">
+                                <div class="area-label">CPU使用记录</div>
+                                <div>
+                                    <ul class="list-group" style="float:left;">
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU型号</strong>:<span class="span-content">Intel i7</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>CPU频率</strong>:<span class="span-content">12800</span>
+                                        </li>
+                                        <li class="list-group-item" style="border:none;">
+                                            <strong>运行时间</strong>:<span class="span-content">78h</span>
+                                        </li>
+                                    </ul>
+                                    <div id="reatltime-chart3">
+                                        <div id="reatltime-chartContainer3" class="realtime-chartcontainer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">内存</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div>物理内存：4096MB</div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"  aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">20% Complete (success)</span>
+                                    </div>
+                                    1640MB
+                                </div>
+                                <div style="margin:2px 0;">物理内存使用记录</div>
+                                <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="66%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#36d8c0" data-spot-color="#f9a10c" data-fill-color="" data-highlight-line-color="#36d8c0" data-highlight-spot-color="#e1b8ff" data-spot-radius="3" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
+                                    </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div>Swap Space：180MB</div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40"  aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                        <span class="sr-only">50% Complete (success)</span>
+                                    </div>
+                                    90MB
+                                </div>
+                                <div style="margin:2px 0;">Swap Space使用记录</div>
+                                <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="66%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#36d8c0" data-spot-color="#f9a10c" data-fill-color="" data-highlight-line-color="#36d8c0" data-highlight-spot-color="#e1b8ff" data-spot-radius="3" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">网络接口</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="top-stats-panel">
+                            <h4>eth0</h4>
+                            <img src="img/internet.png" class="net-img">
+                            <ul class="list-group">
+                                <li class="list-group-item" style="border:none;">
+                                    <strong>发送速率</strong>:<span class="span-content">288bps</span>
+                                </li>
+                                <li class="list-group-item" style="border:none;">
+                                    <strong>接收速率</strong>:<span class="span-content">284bps</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="border-line"></div>
+                        <div class="top-stats-panel">
+                            <h4>eth0</h4>
+                            <img src="img/internet.png" class="net-img">
+                            <ul class="list-group">
+                                <li class="list-group-item" style="border:none;">
+                                    <strong>发送速率</strong>:<span class="span-content">288bps</span>
+                                </li>
+                                <li class="list-group-item" style="border:none;">
+                                    <strong>接收速率</strong>:<span class="span-content">284bps</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">内存性能指标</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="top-stats-panel">
+                            <div style="margin-bottom:10px;">内存页交换速率(page/s)</div>
+                            <div class="progress progress-striped active" style="margin-bottom:0;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" 
+                                aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                                80
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">文件系统</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="top-stats-panel">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="graph-area">
+                                        <div class="area-label">C: 10G</div>
+                                        <div class="pie-chart">
+                                            <div id="pie_chart_1" style="width: 100%;height:100px; text-align: left;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="graph-area">
+                                        <div class="area-label">C: 10G</div>
+                                        <div class="pie-chart">
+                                            <div id="pie_chart_2" style="width: 100%;height:100px; text-align: left;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="graph-area">
+                                        <div class="area-label">C: 10G</div>
+                                        <div class="pie-chart">
+                                            <div id="pie_chart_3" style="width: 100%;height:100px; text-align: left;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="graph-area">
+                                        <div class="area-label">C: 10G</div>
+                                        <div class="pie-chart">
+                                            <div id="pie_chart_4" style="width: 100%;height:100px; text-align: left;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="widget-header">当前用户数</span>
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-cog"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+                        <div class="top-stats-panel">
+                            <div class="graph-area">
+                                <div class="area-label">当前在线用户(人)</div>
+                                <span class="circle-area">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="matrix" class="container" style="width:90% !important; display:none; margin:44px 5% 0 5%">
+      <div class="row">
+      
+        <div class="panel panel-primary panel-default">
+          <div class="panel-heading">
+            <div>
+            矩阵数据显示为：
+                <select id="dataRange">
+                    <option value="1">最近一天</option>
+                    <option value="5">最近五天</option>
+                    <option value="10">最近十天</option>
+                    <option value="30">最近一个月</option>
+                </select>
+                <button type="button" class="btn btn-xs" id="btnRefresh">
+                              <span class="glyphicon glyphicon-refresh"></span> 刷新
+                            </button>
+                            <span style="float:right;">
+                                刷新频率：
+                                <select id="refreshFrequency">
+                                    <option value="1">1分钟</option>
+                                    <option value="5" selected="true">5分钟</option>
+                                    <option value="10">10分钟</option>
+                                </select>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                上次刷新：<span id="refreshTime">2014-04-14 12:89</span>
+                            </span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr class="table_title">
+                        <td></td>
+                        <td>北京市</td>
+                        <td>沈阳市</td>
+                        <td>上海市</td>
+                        <td>南京市</td>
+                        <td>武汉市</td>
+                        <td>广州市</td>
+                        <td>成都市</td>
+                        <td>西安市</td>
+                        <td>杭州市</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table_title">北京网通机房</td>
+                        <td class="success">-</td>
+                        <td class="success"><span class="label-danger">1260</span></td>
+                        <td class="warning"><span class="label-info">234</span></td>
+                        <td class="danger"><span class="label-success">110</span></td>
+                        <td class="danger"><span class="label-warning">250</span></td>
+                        <td class="success"><span class="label-info">222</span></td>
+                        <td class="warning"><span class="label-danger">1111</span></td>
+                        <td class="success"><span class="label-success">100</span></td>
+                        <td class="danger"><span class="label-warning">222</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table_title">沈阳网通机房</td>
+                        <td class="warning"><span class="label-warning">202</span></td>
+                        <td class="success">-</td>
+                        <td class="success"><span class="label-info">110</span></td>
+                        <td class="success"><span class="label-success">10</span></td>
+                        <td class="danger"><span class="label-warning">211</span></td>
+                        <td class="warning"><span class="label-warning">200</span></td>
+                        <td class="danger"><span class="label-info">233</span></td>
+                        <td class="warning"><span class="label-success">2</span></td>
+                        <td class="success"><span class="label-danger">2222</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="table_title">上海网通机房</td>
+                        <td class="success"><span class="label-success">23</span></td>
+                        <td class="warning"><span class="label-info">444</span></td>
+                        <td class="success">-</td>
+                        <td class="danger"><span class="label-danger">3333</span></td>
+                        <td class="success"><span class="label-info">333</span></td>
+                        <td class="danger"><span class="label-success">11</span></td>
+                        <td class="warning"><span class="label-danger">4567</span></td>
+                        <td class="success"><span class="label-warning">343</span></td>
+                        <td class="danger"><span class="label-success">1</span></td>
+                    </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                <tr>
+                  <td class="table_title">上海网通机房</td>
+                  <td class="success"><span class="label-success">23</span></td>
+                  <td class="warning"><span class="label-info">444</span></td>
+                  <td class="success">-</td>
+                  <td class="danger"><span class="label-danger">3333</span></td>
+                  <td class="success"><span class="label-info">333</span></td>
+                  <td class="danger"><span class="label-success">11</span></td>
+                  <td class="warning"><span class="label-danger">4567</span></td>
+                  <td class="success"><span class="label-warning">343</span></td>
+                  <td class="danger"><span class="label-success">1</span></td>
+                </tr>
+                </table>
+                
+                <span style="padding:10px;border:1px solid #ddd;float:right;">
+                    <span style="font-weight:bold;">图例</span>  
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    延时：<span class="label-success">&nbsp;&nbsp;&nbsp;&nbsp;</span>非常好
+                    <span class="label-info">&nbsp;&nbsp;&nbsp;&nbsp;</span>正常
+                    <span class="label-warning">&nbsp;&nbsp;&nbsp;&nbsp;</span>警告
+                    <span class="label-danger">&nbsp;&nbsp;&nbsp;&nbsp;</span>非常差
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    丢包率：
+                    <span style="background-color:#dff0d8;border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;<=10%&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="background-color:#fcf8e3;border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;10%-20%&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="background-color:#f2dede;border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;>=20%&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="background-color:#f5f5f5;border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;无数据&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </span>
+
+                
+            </div>
+          </div>
+        </div>
+          
+        </div>
+    </div> <!-- /container -->
+    
+    <div id="mycharts" class="container" style="width:100% !important;display:none;">
+    	 <div class="row">
+                    	<section class="panel">
+                    <div class="col-md-12">
+                    <header class="panel-heading" style="margin:64px 15% 0 15%" >
+                        <span class="widget-header">趋势分析图</span>
+                    </header>
+                        <div id="chart_2" class="chart">
+                        </div>
+                    </div>
+                        </section>
+		</div>
+    </div>
+
+
+	<div id="myPieCharts" class="container"
+		style="width: 100% !important; display: none;margin-top:44px;">
+		<!-- <div class="row"> -->
+            <div class="col-md-6">
+				<ul class="list-group" style="width:90%;margin-top: 100px;margin-left: 5%;">
+				  <li class="list-group-item">
+				    <div class="pie-pgs" style="width:10%;">
+				      <span>3.9s</span>
+				    </div>
+				    <div class="progress progress-striped pie-pgs pie-chrome" style="margin-right:20px;">
+					  <div class="progress-bar progress-bar-success" role="progressbar" 
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    <span class="sr-only">3.9s</span>
+					  </div>
+					</div>
+					<span class="pie-span">Chrome:</span>
+				  </li>
+				  <li class="list-group-item">
+				    <div class="pie-pgs" style="width:10%;">
+				      <span>4.2s</span>
+				    </div>
+				    <div class="progress progress-striped pie-pgs pie-firefox" style="margin-right:20px;">
+					  <div class="progress-bar progress-bar-info" role="progressbar" 
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    <span class="sr-only">4.2s</span>
+					  </div>
+					</div>
+					<span class="pie-span">Firefox:</span>
+				  </li>
+				  <li class="list-group-item">
+				    <div class="pie-pgs" style="width:10%;">
+				      <span>4.8s</span>
+				    </div>
+				    <div class="progress progress-striped pie-pgs pie-safari" style="margin-right:20px;">
+					  <div class="progress-bar progress-bar-warning" role="progressbar" 
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    <span class="sr-only">4.8s</span>
+					  </div>
+					</div>
+					<span class="pie-span">Safari:</span>
+				  </li>
+				  <li class="list-group-item">
+				    <div class="pie-pgs" style="width:10%;">
+				      <span>5.3s</span>
+				    </div>
+				    <div class="progress progress-striped pie-pgs pie-ie" style="margin-right:20px;">
+					  <div class="progress-bar progress-bar-danger" role="progressbar" 
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    <span class="sr-only">5.3s</span>
+					  </div>
+					</div>
+					<span class="pie-span">IE:</span>
+				  </li>
+				  <li class="list-group-item">
+				    <div class="pie-pgs" style="width:10%;">
+				      <span>5.1s</span>
+				    </div>
+				    <div class="progress progress-striped pie-pgs pie-other" style="margin-right:20px;">
+					  <div class="progress-bar progress-bar-danger" role="progressbar" 
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					    <span class="sr-only">5.1s</span>
+					  </div>
+					</div>
+					<span class="pie-span">其他浏览器:</span>
+				  </li>
+				</ul>
+			</div>
+			<!-- <div class="col-md-6">
+				<div id="pie_chart_6" class="chart1" style="width:200px;height:200px;margin:60px 5%"></div>
+			</div> -->
+			<div class="col-md-6">
+                <div id="pie_dx" style="height:400px;width:400px; margin-top:40px"></div>
 			</div>
 		</div>
-	</header>
-	<!--content-->
-	<div class="container" id="main">
-		<!--navbar only view in phone-->
-		<nav
-			class="navbar navbar-default navbar-static-top navbar-inverse visible-xs"
-			role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand">ServiceJet巡检系统</a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-navbar-collapse">
-				<ul class="nav navbar-nav" id="PhoneMenu">
-					<li class="active" data-href="#tasks"><a href="#">任务</a></li>
-					<li data-href="#news"><a href="#">通知</a></li>
-					<li data-href="#charts"><a href="#">报表</a></li>
-					<li data-href="#contracts"><a href="#">通讯录</a></li>
-					<li data-href="#settings"><a href="#">设置</a></li>
-				</ul>
-			</div>
-		</nav>
+	<!-- </div> -->
 
-		<div class="row">
-			<div class="col-sm-3 col-md-3 hidden-xs">
-				<ul class="list-group" id="NavMenu">
-					<li class="list-group-item active" data-href="#tasks"><a
-						href="#" class="list-link"> 巡检任务 <span
-							class="badge link-badge" style="display: block;">5</span>
-					</a></li>
-					<li class="list-group-item" data-href="#news"><a href="#"
-						class="list-link"> 最新通知 <span class="badge link-badge"
-							style="display: block;">8</span>
-					</a></li>
-					<li class="list-group-item" data-href="#charts"><a href="#"
-						class="list-link"> 数据报表 </a></li>
-					<li class="list-group-item" data-href="#contracts"><a href="#"
-						class="list-link"> 通讯录 </a></li>
-					<li class="list-group-item" data-href="#settings"><a href="#"
-						class="list-link"> 系统设置 </a></li>
-				</ul>
-				<hr>
-				<div class="well">
-					<img id="userImg" class="img-responsive" src="img/what_icon.png">
-					<div class="page-header">
-						<h2>汪晓书</h2>
-					</div>
-					<h3>中国移动北京分公司</h3>
-					<p>信息技术部运营维护处</p>
-				</div>
-			</div>
+	<div class="navbar navbar-fixed-bottom" style="background-color:#212121;">
+        <div class="container">
+            <ul class="ul-menu">
+                <li data-href="#appdashboard"><a href="#"><i class="fa fa-bell"></i> 应用驾驶舱</a></li>
+                <li><a href="timeline.html"><i class="fa fa-clipboard"></i> 端到端体验</a></li>
+                <li data-href="#matrix"><a><i class="fa fa-bar-chart-o"></i> 矩阵报表</a></li>
+                <li><a href="map.html"><i class="fa fa-map-marker"></i> 全国区域视图</a></li>
+                <li data-href="#myPieCharts"><a><i class="fa fa-sun-o"></i> 占比视图</a></li>
+                <li data-href="#mycharts"><a><i class="fa fa-users"></i> 趋势曲线视图</a></li>
+                <!-- <li ><a href="http://192.168.1.134:8999/charts.html"><i class="fa fa-users"></i> ttt</a></li> -->
+            </ul>
+        </div>
+    </div>
+<!--Core js-->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!--Easy Pie Chart-->
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<!--Sparkline Chart-->
+<script src="js/sparkline/jquery.sparkline.js"></script>
+
+<!--jQuery Flot Chart-->
+<script src="js/flot-chart/jquery.flot.js"></script>
+<script src="js/flot-chart/jquery.flot.tooltip.min.js"></script>
+<script src="js/flot-chart/jquery.flot.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.animator.min.js"></script>
+<script src="js/flot-chart/jquery.flot.growraf.js"></script>
+
+<!--dx chart-->
+<script src="js/globalize.min.js"></script>
+<script src="js/dx.chartjs.js"></script>
 
 
-			<!--right column-->
-			<!-- 巡检任务 -->
-			<div id="tasks" class="col-xs-12 col-sm-9 col-md-9">
-				<div class="hidden-xs">
-					<img class="img-responsive" alt="Responsive image" src="img/jf.png">
-				</div>
-				<hr class="hidden-xs">
-				<ul class="list-group" id="taskUL">
-					
-				</ul>
-			</div>
+<script src="js/mycharts.js"></script>
+<script type="text/javascript">
+    $(function() {
 
-			<!-- 最新通知 -->
-			<div id="news" style="display: none"
-				class="col-xs-12 col-sm-9 col-md-9">
-				<ul class="list-group">
-					<li class="list-group-item"><span class="label label-danger">置顶</span>
-						XX系统将于2014年11月23日试运行. <span class="label label-success pull-right">公告通知</span></li>
-					<li class="list-group-item"><span class="label label-danger">置顶</span>
-						<span class="label label-success pull-right">公告通知</span>
-						XXXYY系统计划本周四晚进行割接,请使用用户注意提前保存工作.</li>
-					<li class="list-group-item"><span class="badge badge-primary">行业新闻</span>
-						支付宝回应：余额宝是稳妥可持续的理财创新.</li>
-					<li class="list-group-item"><span class="badge badge-primary">行业新闻</span>
-						互联网电视走到岔路口：野蛮生长待监管.</li>
-					<li class="list-group-item"><span class="badge badge-warning">内部新闻</span>
-						《找你妹》版权事件双方和解 热酷获10年发行权.</li>
-					<li class="list-group-item"><span class="badge badge-info">行业新闻</span>
-						3Q大战终审宣判：驳回上诉 维持原判.</li>
-					<li class="list-group-item"><span class="badge badge-primary">行业新闻</span>
-						比特币交易所Mt.Gox CEO辞任比特币基金会董事.</li>
-					<li class="list-group-item"><span class="badge badge-warning">内部新闻</span>
-						P2P网贷平台积木盒子获银泰资本千万美元投资.</li>
-				</ul>
-			</div>
+        /*==Easy Pie chart ==*/
+        if ($.fn.easyPieChart) {
+            $('.epie-chart').easyPieChart({
+                onStep: function(from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                },
+                //barColor: "#f8a20f",
+                barColor: function() {
+                    var num = parseInt($(this.el).data("percent"));
+                    if (num < 50) {
+                        return "#35aa47";//green
+                    } else if (num >= 50 && num < 75) {
+                        return "f8a20f";//yellow
+                    } else {
+                        return "#ed4e2a";//red
+                    }
+                },
+                lineWidth: 10,
+                size:60,
+                trackColor: "#efefef",
+                scaleColor: false
+            });
+        }
 
-			<!-- 通讯录 -->
-			<div id="contracts" style="display: none"
-				class="col-xs-12 col-sm-9 col-md-9">
-				<ul class="list-group">
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">赵文卓</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">zhaowz@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">成龙</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">chenglong@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">赵忠祥</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">zhaozhongx@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">周如发</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">xsssfddfo@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">成龙</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">chenglong@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">赵忠祥</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">zhaozhongx@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">周如发</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">xsssfddfo@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">成龙</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">chenglong@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">赵忠祥</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">zhaozhongx@163.com</div>
-                        </div>
-					</li>
-					<li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3 col-md-2">周如发</div>
-                            <div class="col-xs-4 col-md-3">13245678902</div>
-                            <div class="col-xs-5 col-md-4">xsssfddfo@163.com</div>
-                        </div>
-					</li>
-				</ul>
-			</div>
+        /*== SPARKLINE==*/
+        if ($.fn.sparkline) {
+            var sparkLine = function () {
+                $(".sparkline").each(function () {
+                    var $data = $(this).data();
+                    ($data.type == 'pie') && $data.sliceColors && ($data.sliceColors = eval($data.sliceColors));
+                    ($data.type == 'bar') && $data.stackedBarColor && ($data.stackedBarColor = eval($data.stackedBarColor));
+
+                    $data.valueSpots = {
+                        '0:': $data.spotColor
+                    };
+                    $(this).sparkline($data.data || "html", $data);
 
 
+                    if ($(this).data("compositeData")) {
+                        $spdata.composite = true;
+                        $spdata.minSpotColor = false;
+                        $spdata.maxSpotColor = false;
+                        $spdata.valueSpots = {
+                            '0:': $spdata.spotColor
+                        };
+                        $(this).sparkline($(this).data("compositeData"), $spdata);
+                    };
+                });
+            };
 
-			<!-- 数据报表 -->
-			<div id="charts" style="display: none"
-				class="tabbable col-xs-12 col-sm-9 col-md-9">
-				<div class="well">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#chart_line" data-toggle="tab">曲线图</a></li>
-						<li><a href="#chart_bar" data-toggle="tab">柱状图</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="chart_line">
-							<canvas id="line_Chart" width="530" height="400"></canvas>
-						</div>
+            sparkLine(false);
+        }
 
-						<div class="tab-pane" id="chart_bar">
-							<canvas id="bar_Chart" width="530" height="400"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
+    });
+    
+    //realtime chart
+    $(function() {
+        var data1 = [];
+        var totalPoints1 = 200;
+        var data2 = [];
+        var totalPoints2 = 180;
+        var data3 = [];
+        var totalPoints3 = 240;
 
+        var options = {
+            series: {
+                lines: {
+                    show: true,
+                    fill: true
+                },
+                shadowSize: 0
+            },
+            yaxis: {
+                min: 0,
+                max: 100,
+                ticks: 5
+            },
+            xaxis: {
+                show: false
+            },
+            grid: {
+                hoverable: true,
+                clickable: true,
+                tickColor: "#f9f9f9",
+                borderWidth: 1,
+                borderColor: "#eeeeee"
+            },
+            colors: ["#79D1CF"],
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme: false
+            }
+        };
+        var plot1 = $.plot($("#reatltime-chart1 #reatltime-chartContainer1"), [
+                GetData1()], options);
+        var plot2 = $.plot($("#reatltime-chart2 #reatltime-chartContainer2"), [
+                GetData2()], options);
+        var plot3 = $.plot($("#reatltime-chart3 #reatltime-chartContainer3"), [
+                GetData3()], options);
 
+        
+        function GetData1() {
+            data1.shift();
+            while (data1.length < totalPoints1) {
+                var prev = data1.length > 0 ? data1[data1.length - 1] : 35;
+                var y = prev + Math.random() * 10 - 5;
+                y = y < 0 ? 0 : (y > 100 ? 100 : y);
+                data1.push(y);
+            }
+            var result = [];
+            for (var i = 0; i < data1.length; ++i) {
+                result.push([i, data1[i]])
+            }
+            return result;
+        }
+        function GetData2() {
+            data2.shift();
+            while (data2.length < totalPoints2) {
+                var prev = data2.length > 0 ? data2[data2.length - 1] : 66;
+                var y = prev + Math.random() * 10 - 5;
+                y = y < 0 ? 0 : (y > 100 ? 100 : y);
+                data2.push(y);
+            }
+            var result = [];
+            for (var i = 0; i < data2.length; ++i) {
+                result.push([i, data2[i]])
+            }
+            return result;
+        }
+        function GetData3() {
+            data3.shift();
+            while (data3.length < totalPoints3) {
+                var prev = data3.length > 0 ? data3[data3.length - 1] : 78;
+                var y = prev + Math.random() * 10 - 5;
+                y = y < 0 ? 0 : (y > 100 ? 100 : y);
+                data3.push(y);
+            }
+            var result = [];
+            for (var i = 0; i < data3.length; ++i) {
+                result.push([i, data3[i]])
+            }
+            return result;
+        }
+        var updateInterval = 100;
+        function update1() {
+            plot1.setData([GetData1()]);
+            plot1.draw();
+            setTimeout(update1, updateInterval);
+        }
+        function update2() {
+            plot2.setData([GetData2()]);
+            plot2.draw();
+            setTimeout(update2, 400);
+        }
+        function update3() {
+            plot3.setData([GetData3()]);
+            plot3.draw();
+            setTimeout(update3, 500);
+        }
+        update1();
+        //update2();
+        //update3();
+    });
+  
+     // 文件系统饼图
+    $(function() {
+        for (var i = 1; i < 5; i++) {
+            var data = [];
+            data[0] = {
+                label: "Free",
+                data: Math.floor(Math.random() * 100) + 1
+            }
+            data[1] = {
+                label: "Paid",
+                data: Math.floor(Math.random() * 100) + 1
+            }
+            $.plot($("#pie_chart_" + i), data, {
+                series: {
+                    pie: {
+                        show: true
+                    }
+                },
+                legend: {
+                    show: true
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                },
+                colors: ["#79D1CF", "#D9DD81"],
+                tooltip: true,
+                tooltipOpts: {
+                    defaultTheme: false
+                }
+            });
+        }
+    });
 
-			<!-- 系统设置 -->
-			<div id="settings" style="display: none"
-				class="col-xs-12 col-sm-9 col-md-9">
-				<div class="well">
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<label for="inputRemoteurl" class="col-sm-2 control-label">Remote
-								URL</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputRemoteurl"
-									value="http://10.133.124.99:8898/serviceJetAppService"
-									placeholder="请输入远程服务URL.">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputMsgInterval" class="col-sm-2 control-label">回传间隔(秒)</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputMsgInterval"
-									value="300" placeholder="暂存离线数据上传检查周期.">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputMsgInterval" class="col-sm-2 control-label">启动定位</label>
-							<div class="col-sm-10">
-								<div class="radio-inline">
-									<label> <input type="radio" name="optionsRadios"
-										id="optionsRadios1" value="option1" checked> 是
-									</label>
-								</div>
-								<div class="radio-inline">
-									<label> <input type="radio" name="optionsRadios"
-										id="optionsRadios2" value="option2"> 否
-									</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-success pull-right">保存配置</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-
-
-		</div>
-	</div>
-	<script src="js/jquery.min.js">
-    </script>
-	<script src="js/bootstrap.min.js">
-    </script>
-	<script src="js/Chart.min.js"></script>
-
-	<script src="cordova.js" type="text/javascript"></script>
-	<!-- <script src="js/userImg.js" type="text/javascript"></script> -->
-	<script type="text/javascript" src="js/initDataJ1.js" charset="gbk"></script>
-
-
-	<script type="text/javascript">
-	
-		var line_data = {
-		    labels : [ "January", "February", "March", "April", "May", "June", "July" ],
-		    datasets : [ {
-		        fillColor : "rgba(220,220,220,0.5)",
-		        strokeColor : "rgba(220,220,220,1)",
-		        pointColor : "rgba(220,220,220,1)",
-		        pointStrokeColor : "#fff",
-		        data : [ 65, 59, 90, 81, 56, 55, 40 ]
-		    }, {
-		        fillColor : "rgba(151,187,205,0.5)",
-		        strokeColor : "rgba(151,187,205,1)",
-		        pointColor : "rgba(151,187,205,1)",
-		        pointStrokeColor : "#fff",
-		        data : [ 28, 48, 40, 19, 96, 27, 100 ]
-		    } ]
-		}
-		
-		var bar_data = {
-		    labels : [ "January", "February", "March", "April", "May", "June", "July" ],
-		    datasets : [ {
-		        fillColor : "rgba(220,220,220,0.5)",
-		        strokeColor : "rgba(220,220,220,1)",
-		        data : [ 65, 59, 90, 81, 56, 55, 40 ]
-		    }, {
-		        fillColor : "rgba(151,187,205,0.5)",
-		        strokeColor : "rgba(151,187,205,1)",
-		        data : [ 28, 48, 40, 19, 96, 27, 100 ]
-		    } ]
-		}
-	
-    	$(document).ready(function() {
-    		document.addEventListener("deviceready", onDeviceReady, false);
-    	
-    		$("#NavMenu,#PhoneMenu").on("click", "li", function(){
-    			//如果点击报表并且canvas还没画图
-    			//if ($(this).data("href") == "#charts" && $("#line_Chart").width() == 0) {
-    				//drawChart();
-    			//}
-    			$($(this).data("href")).show();
+     $(function() {
+        $(".ul-menu").on("click", "li", function(){
+                              
+                $($(this).data("href")).show();
+                if ($(this).data("href") == "#myPieCharts") {
+                   pie();
+                } 
                 $(this).addClass("active")
                     .siblings().removeClass("active")
                     .each(function() {
-	                	if($(this).data("href")) {
-	                		$($(this).data("href")).hide();
-	                	}
-	                });
-    		});
-    		//数据报表
-    		function drawChart() {
-    			if (window.innerWidth < 768) {
-                    $("#line_Chart").prop("width", "400");
-                    $("#bar_Chart").prop("width", "400"); 
-				}
-                drawLine();
-                drawBar();
-    		}
-            //画曲线图
-    		function drawLine() {
-    			var ctx_line = $("#line_Chart").get(0).getContext("2d");
-				new Chart(ctx_line).Line(line_data);
-    		}
-    		//画柱状图
-    		function drawBar() {
-    			var ctx_bar = $("#bar_Chart").get(0).getContext("2d");
-				new Chart(ctx_bar).Bar(bar_data);
-    		}
-    		drawChart();
-    	});
-    </script>
+                        if($(this).data("href")) {
+                            $($(this).data("href")).hide();
+                        }
+                    });
+        });
+    });
 
+    function pie() {
+        var dataSource = [
+            { country: "Chrome", area: 55 },
+            { country: "Firefox", area: 15 },
+            { country: "Safari", area: 10 },
+            { country: "IE", area: 15 },
+            { country: "Other", area: 5 }
+        ];
 
+        $("#pie_dx").dxPieChart({
+            dataSource: dataSource,
+            series: [
+                {
+                    argumentField: "country",
+                    valueField: "area",
+                    label:{
+                        visible: true,
+                        connector:{
+                            visible:true,           
+                            width: 1
+                        }
+                    }
+                }
+            ],
+            title: "浏览器份额",
+            animation: {
+                enabled: true
+            }
+        });
+
+    }
+	
+</script>
 </body>
-
 </html>

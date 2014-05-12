@@ -1,0 +1,20 @@
+.content-container {
+    border-radius: 4px;
+    margin-bottom: 20px;
+    min-height: 136px;
+}
+.ul-menu {
+    margin: 0 10%;
+}
+.ul-menu li {
+    float: left;
+    list-style: none;
+    padding: 4px;
+}
+.ul-menu a {
+    color: #999;
+    font-size: 18px;
+}
+.ul-menu a:hover {
+    color: #ddd;
+}
