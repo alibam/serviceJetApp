@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>巡检监控</title>
+    <!--Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/jet.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
+    <link href="css/timeline.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header class="header navbar navbar-fixed-top">
+        <div class="container">
+            <!-- BEGIN LOGO -->
+            <a class="navbar-brand" href="#">
+                <img src="img/metrologo.png" alt="logo" class="img-responsive"/>
+            </a>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img alt="" src="img/avatar.jpg" style="margin-top:-2px;"/>
+                        <span class="username">
+                             	系统管理员
+                        </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> My Calendar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container" style="margin-top:144px;">
+        <div class="row">
+            <div class="chartContainer">
+                <div class="total-chart">
+                    <div id="chart-total" style="height:100%;width:100%;"></div>
+                </div>
+                <div class="part-chart">
+                    <div id="chart1" class="sub-chart"></div>
+                    <div id="chart2" class="sub-chart"></div>
+                    <div id="chart3" class="sub-chart"></div>
+                    <div id="chart4" class="sub-chart"></div>
+                    <div id="chart5" class="sub-chart"></div>
+                    <div id="chart6" class="sub-chart"></div>
+                </div>
+                <!-- <div id="chart-fork" style="height:33%;"></div> -->
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin-left:4%;">
+                <div class="col-md-2 cus-col col-img">
+                    <div class="pc"></div>
+                    <div class="arraw" style="left:83%;top:44%;">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">VPN</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="65">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">Radius</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="70">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="35">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">Oracle</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="40">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="75">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">AS</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="90">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="25">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">Smadp</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="50">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="85">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <span class="widget-header">SMS</span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="20">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="dashboard">
+                                <h5>CPU</h5>
+                                <span class="epie-chart" data-percent="80">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="arraw">
+                        <span class="glyphicon glyphicon-arrow-right"> </span>
+                    </div>
+                </div>
+                <div class="col-md-2 cus-col col-img">
+                    <div class="phone"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="navbar navbar-fixed-bottom" style="background-color:#212121;">
+        <div class="container">
+            <ul class="ul-menu">
+                <li><a href="#"><i class="fa fa-bell"></i> 应用驾驶舱</a></li>
+                <li><a href="#"><i class="fa fa-clipboard"></i> 端到端体验</a></li>
+                <li><a href="#"><i class="fa fa-bar-chart-o"></i> 矩阵报表</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 全国区域视图</a></li>
+                <li><a href="#"><i class="fa fa-sun-o"></i> 占比视图</a></li>
+                <li><a href="#"><i class="fa fa-users"></i> 趋势曲线视图</a></li>
+            </ul>
+        </div>
+    </div> -->
+    <div class="navbar navbar-fixed-bottom" style="background-color:#212121;">
+        <div class="container">
+            <ul class="ul-menu">
+                <li><a href="j1.html#appdashboard"><i class="fa fa-bell"></i> 应用驾驶舱</a></li>
+                <li><a href="timeline.html"><i class="fa fa-clipboard"></i> 端到端体验</a></li>
+                <li><a href="j1.html#matrix"><i class="fa fa-bar-chart-o"></i> 矩阵报表</a></li>
+                <li><a href="map.html"><i class="fa fa-map-marker"></i> 全国区域视图</a></li>
+                <li><a href="j1.html#myPieCharts"><i class="fa fa-sun-o"></i> 占比视图</a></li>
+                <li><a href="j1.html#mycharts"><i class="fa fa-users"></i> 趋势曲线视图</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" style="margin-top:60px" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div> -->
+          <div class="modal-body">
+                <div class="modal-panel">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-panel">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-panel">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-panel">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                            <div class="modal-dashboard">
+                                <h5>内存</h5>
+                                <span class="epie-chart" data-percent="30">
+                                      <span class="percent"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+          </div>
+          <!-- <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+<!--Core js-->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/globalize.min.js"></script>
+<script src="js/dx.chartjs.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!--Easy Pie Chart-->
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+
+<script type="text/javascript">
+    var dataSource = [
+        {name: "VPN", startValue: 0, endValue: 30, color: "#77DD77", elapse: 10},
+        {name: "Radius", startValue: 30, endValue: 60, color: "#E6E200", elapse: 30},
+        {name: "Oracle", startValue: 60, endValue: 90, color: "#E6E200", elapse: 50},
+        {name: "AS", startValue: 90, endValue: 120, color: "#E6E200", elapse: 30},
+        {name: "Smadp", startValue: 120, endValue: 150, color: "#E6E200", elapse: 42},
+        {name: "SMS", startValue: 150, endValue: 180, color: "#E6E200", elapse: 18},
+    ];
+    //total chart timeline
+    $(function() {
+        var options_total = {
+            scale: {
+                startValue: 0, endValue: 180,
+                majorTick: {
+                    tickInterval: 180,
+                    color: 'black',
+                },
+                label: {
+                    customizeText: function (arg) {
+                        //return arg.valueText + ' %';
+                        return "";
+                    }
+                }
+            },
+            title: {
+                text: "动态密码获得总体响应时间180ms",
+                font: {size: 18}
+            }
+        };
+        $("#chart-total").dxLinearGauge($.extend(true, {}, options_total, {
+            //value: 180,
+            //valueIndicator: {
+            //    type: 'rectangle',
+            //    color: '#9B870C'
+            //},
+            subvalues: [0, 180],
+            subvalueIndicator: {
+                type: 'triangleMarker',
+                color: '#9B870C'
+            },
+        }));
+    });
+    //part chart timeline
+    $(function() {
+        var options_sub = {
+            scale: {
+                startValue: 0, endValue: 100,
+                majorTick: {
+                    color: 'black',
+                    tickInterval: 100
+                },
+                label: {
+                    customizeText: function (arg) {
+                        //return arg.valueText + ' %';
+                        return "";
+                    }
+                }
+            }
+        };
+        var selectors = ['1', '2', '3', '4', '5', '6'];
+        var timeLine = timeLine || {};
+        timeLine.colorAdapter = function (val) {
+            //should check first
+            if (val < 20) {
+                return "#35aa47";//green
+            } else if ( val >= 20 && val < 40) {
+                return "#E6E200";//yellow
+            } else {
+                return "#ed4e2a"//red
+            }
+        };
+        $.each(selectors, function(i, n) {
+            timeLine['gauge_' + n] = $("#chart" + n).dxLinearGauge($.extend(true, {}, options_sub, {
+                //value: 100,
+                valueIndicator: {
+                    type: 'none'
+                },
+                subvalues: [0, 100],
+                subvalueIndicator: {
+                    type: 'triangleMarker',
+                    color: '#9B870C'
+                },
+                title: {
+                    text: dataSource[i].name + "响应时间" ,
+                    font: {size: 12}
+                },
+                rangeContainer: {
+                    ranges: [{startValue: 0, endValue: 100}]
+                }
+            })).dxLinearGauge('instance');
+            setTimeout(function(){
+                if (i != 0) {
+                    var opt_prev = timeLine['gauge_' + (n -1)].option();
+                    opt_prev.valueIndicator = {type: 'none'};
+                    //opt_prev.subvalueIndicator.color = '#9B870C';
+                    //timeLine['gauge_' + (n - 1)].render();
+                }
+                var opt = timeLine['gauge_' + n].option();
+                opt.valueIndicator = {type: 'none',color: 'green'};
+                //opt.subvalueIndicator.color = 'red';
+                opt.title = {
+                    text: dataSource[i].name + "响应时间" + dataSource[i].elapse + "ms",
+                    font: {size: 12}
+                };
+                timeLine['gauge_' + n].value(100);
+                opt.rangeContainer.ranges[0].color = timeLine.colorAdapter(dataSource[i].elapse);
+                timeLine['gauge_' + n].render();
+            }, 2000 * (i + 1));
+        });
+    });
+    
+    /*
+    //the third 
+    $(function() {
+        var options_fork = {
+            scale: {
+                startValue: 0, endValue: 180,
+                majorTick: {
+                    color: 'black',
+                    showCalculatedTicks: false,
+                    customTickValues: [0, 30, 60, 90, 120, 150, 180]
+                },
+                label: {
+                    customizeText: function (arg) {
+                        //return arg.valueText + ' %';
+                        return "";
+                    }
+                }
+            },
+            rangeContainer: {
+                ranges: dataSource
+            },
+            subvalues: [0, 30, 60, 90, 120, 150, 180],
+            subvalueIndicator: {
+                type: 'triangleMarker',
+                color: '#9B870C'
+            }
+        };
+        var gauge_fork = $("#chart-fork").dxLinearGauge($.extend(true, {}, options_fork, {
+            value: 30,
+            valueIndicator: {
+                type: 'circle',
+                color: 'green'
+            }
+        })).dxLinearGauge('instance');
+
+        function change() {
+            var ranges = gauge_fork.option().rangeContainer.ranges;
+            $.each(dataSource, function(i, n) {
+                setTimeout(function(){
+                    if (i != 0) {
+                        gauge_fork.value(n.endValue);
+                        ranges[i].color = "#77DD77";
+                        //gauge_fork.render();
+                    }
+                }, 2000 * (i + 1));
+            })
+        }
+        change();
+    });
+    */
+
+    $(function() {
+        /*==Easy Pie chart ==*/
+        if ($.fn.easyPieChart) {
+            $('.epie-chart').easyPieChart({
+                onStep: function(from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent) + "%");
+                },
+                //barColor: "#f8a20f",
+                barColor: function() {
+                    var num = parseInt($(this.el).data("percent"));
+                    if (num < 50) {
+                        return "#35aa47";//green
+                    } else if (num >= 50 && num < 75) {
+                        return "#f8a20f";//yellow
+                    } else {
+                        return "#ed4e2a";//red
+                    }
+                },
+                lineWidth: 5,
+                size:60,
+                trackColor: "#efefef",
+                scaleColor: false
+                //scaleColor: "#ed4e2a"
+            });
+        }
+        $(".panel-body").on("click", function() {
+            $("#myModal").modal();
+        });
+    });
+
+</script>
+</body>
+</html>

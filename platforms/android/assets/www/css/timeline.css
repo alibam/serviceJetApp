@@ -1,0 +1,84 @@
+/* timeline chart*/
+.chartContainer {
+    height: 120px;
+    margin-left: 10%;
+    margin-bottom: 24px;
+}
+.chartContainer .total-chart {
+    height: 50%;
+    /*width: 84%;*/
+    width: 760px;
+    margin-left: -2px;
+}
+.chartContainer .part-chart {
+    height: 50%;
+}
+.sub-chart {
+    /*width: 15%;*/
+    width: 138px;
+    height: 100%;
+    display: inline-block;
+    margin-right: -17px;
+}
+/* custome */
+.cus-col {
+    width: 12% !important;
+    margin-right: 12px;
+    position: relative;
+}
+.cus-col .arraw {
+    position: absolute;
+    left: 91%;
+    top: 40%;
+    font-size: 40px;
+}
+.cus-col .widget-header {
+    font-size: 14px;
+}
+.cus-col .panel-body {
+    cursor: pointer;
+    min-height:120px;
+}
+.col-img {
+    height: 206px;
+    width: 6% !important;
+}
+.col-img .pc {
+    position: absolute;
+    left: -44%;
+    top: 36%;
+    height: 81px;
+    width: 83px;
+    background-image: url(../img/pc.png);
+}
+.col-img .phone {
+    position: absolute;
+    left: 26%;
+    top: 30%;
+    height: 88px;
+    width: 66px;
+    background-image: url(../img/phone.png);
+}
+
+.dashboard {
+    margin: -6px auto;
+}
+.dashboard h5{
+    font-weight: bold;
+}
+.dashboard .epie-chart {
+    margin-left: 0%;/*for pad*/
+}
+/* modal */
+.modal-panel {
+    width: 22%;
+    margin: 0 4px;
+    display: inline-block;
+}
+.modal-panel .panel-body {
+    padding: 4px;
+}
+.modal-dashboard {
+    width: 46%;
+    display: inline-block;
+}
